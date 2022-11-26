@@ -41,8 +41,7 @@ santa_on_bike = pygame.transform.rotate(
 
 
 def draw(bike):
-    screen.fill((0,200,0))
-    '''BACKGROUND COLOR (Green) '''
+    screen.fill((0,200,0)) ,'''BACKGROUND COLOR (Green) '''
 
     screen.blit(santa_on_bike, (bike.x, bike.y))
     '''DRAWING BIKE'''
