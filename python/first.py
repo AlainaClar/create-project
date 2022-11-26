@@ -1,0 +1,76 @@
+
+import pygame
+import os
+
+from pygame.locals import *
+pygame.init()
+
+
+
+screen = pygame.display.set_mode((600,700))
+'''Setting the screen size'''
+
+pygame.display.set_caption("Whacky Wheels 2.0")
+'''Setting tab description'''
+
+FPS = 60
+
+bike_scale_x, bike_scale_y = 55,40
+
+tree_scale_x, tree_scale_y = 50,60
+
+
+
+santa_on_bike_image = pygame.image.load(os.path.join('Images','santa_bike.png'))
+tree_image = pygame.image.load(os.path.join('Images', 'tree.png'))
+
+'''tree_image = pygame.image.load(os.path.join('Images','tree.png'))'''
+
+
+
+
+santa_on_bike = pygame.transform.rotate(
+    pygame.transform.scale(
+        santa_on_bike_image,(bike_scale_x,bike_scale_y)), 0)
+
+
+tree = pygame.transform.scale(
+        tree_image,(tree_scale_x, tree_scale_y))
+
+
+
+def draw(bike):
+    screen.fill((0,200,0))
+    '''BACKGROUND COLOR (Green) '''
+
+    screen.blit(santa_on_bike, (bike.x, bike.y))
+    '''DRAWING BIKE'''
+    screen.blit(tree, (100, 100))
+
+
+    pygame.display.update()
+
+def main():
+    bike = pygame.Rect(100, 700, bike_scale_x, bike_scale_y)
+    tree = pygame.Rect(100, 700, tree_scale_x, tree_scale_y)
+
+    clock = pygame.time.Clock()
+    run = True
+    while run:
+        clock.tick(FPS)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+
+        bike.y += -1
+        tree.y += -1
+
+        draw(bike)
+
+    pygame.quit()
+
+
+
+
+if __name__ == "__main__":
+    main()
